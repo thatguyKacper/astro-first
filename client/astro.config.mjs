@@ -1,4 +1,6 @@
+import * as dotenv from 'dotenv'
 import { loadEnv } from "vite";
+
 const {
   PUBLIC_SANITY_STUDIO_PROJECT_ID,
   PUBLIC_SANITY_STUDIO_DATASET,
@@ -8,9 +10,11 @@ const {
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 
+dotenv.config()
+
 // Different environments use different variables
-const projectId = PUBLIC_SANITY_STUDIO_PROJECT_ID || PUBLIC_SANITY_PROJECT_ID;
-const dataset = PUBLIC_SANITY_STUDIO_DATASET || PUBLIC_SANITY_DATASET;
+const projectId = process.env.SANITY_STUDIO_API_PROJECT_ID || PUBLIC_SANITY_STUDIO_PROJECT_ID;
+const dataset = process.env.SANITY_STUDIO_API_DATASET || PUBLIC_SANITY_STUDIO_DATASET;
 
 import sanity from "@sanity/astro";
 import react from "@astrojs/react";
